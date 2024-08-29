@@ -1,0 +1,125 @@
+{
+    "reviews": [
+      {
+        "professor": "Dr. John Smith",
+        "subject": "Physics",
+        "stars": 4,
+        "review": "Dr. Smith explains concepts clearly and is always willing to help students during office hours."
+      },
+      {
+        "professor": "Prof. Emily Brown",
+        "subject": "Chemistry",
+        "stars": 5,
+        "review": "Prof. Brown is amazing! Her classes are engaging, and she makes complex topics easy to understand."
+      },
+      {
+        "professor": "Dr. Robert Davis",
+        "subject": "Mathematics",
+        "stars": 3,
+        "review": "Dr. Davis is knowledgeable, but his lectures can be a bit dry at times."
+      },
+      {
+        "professor": "Dr. Alice Green",
+        "subject": "Biology",
+        "stars": 4,
+        "review": "Dr. Green is very passionate about her subject and makes learning fun."
+      },
+      {
+        "professor": "Prof. Michael Johnson",
+        "subject": "Computer Science",
+        "stars": 5,
+        "review": "Prof. Johnson is an excellent teacher who really cares about his students' success."
+      },
+      {
+        "professor": "Dr. Sarah Wilson",
+        "subject": "History",
+        "stars": 2,
+        "review": "Dr. Wilson knows her material, but her lectures are monotonous and hard to follow."
+      },
+      {
+        "professor": "Prof. David Lee",
+        "subject": "Economics",
+        "stars": 4,
+        "review": "Prof. Lee is a great lecturer, and he provides real-world examples that make the material relevant."
+      },
+      {
+        "professor": "Dr. Linda Taylor",
+        "subject": "Psychology",
+        "stars": 5,
+        "review": "Dr. Taylor is incredibly insightful and creates a supportive learning environment."
+      },
+      {
+        "professor": "Prof. Richard Anderson",
+        "subject": "Political Science",
+        "stars": 3,
+        "review": "Prof. Anderson is okay, but his exams are tough and not always reflective of the lectures."
+      },
+      {
+        "professor": "Dr. Karen Martinez",
+        "subject": "Sociology",
+        "stars": 4,
+        "review": "Dr. Martinez is very knowledgeable and approachable. Her classes are well-organized."
+      },
+      {
+        "professor": "Prof. William Harris",
+        "subject": "English Literature",
+        "stars": 5,
+        "review": "Prof. Harris is a fantastic teacher with a deep love for literature. His classes are always thought-provoking."
+      },
+      {
+        "professor": "Dr. Patricia Thomas",
+        "subject": "Art History",
+        "stars": 3,
+        "review": "Dr. Thomas is knowledgeable, but sometimes the material can be a bit dry."
+      },
+      {
+        "professor": "Prof. James Clark",
+        "subject": "Philosophy",
+        "stars": 4,
+        "review": "Prof. Clark encourages critical thinking and great class discussions."
+      },
+      {
+        "professor": "Dr. Elizabeth Walker",
+        "subject": "Environmental Science",
+        "stars": 5,
+        "review": "Dr. Walker is incredibly passionate about the environment and inspires her students to make a difference."
+      },
+      {
+        "professor": "Prof. Charles King",
+        "subject": "Business Administration",
+        "stars": 2,
+        "review": "Prof. King’s lectures are not very engaging, and the assignments are unclear."
+      },
+      {
+        "professor": "Dr. Barbara White",
+        "subject": "Statistics",
+        "stars": 4,
+        "review": "Dr. White explains statistical concepts clearly and provides good practice problems."
+      },
+      {
+        "professor": "Prof. Steven Lewis",
+        "subject": "Marketing",
+        "stars": 5,
+        "review": "Prof. Lewis is engaging and brings real-world experience into the classroom."
+      },
+      {
+        "professor": "Dr. Mary Hall",
+        "subject": "Anthropology",
+        "stars": 3,
+        "review": "Dr. Hall is knowledgeable, but sometimes her lectures lack structure."
+      },
+      {
+        "professor": "Prof. Daniel Young",
+        "subject": "Linguistics",
+        "stars": 4,
+        "review": "Prof. Young is an excellent teacher who makes complex linguistic theories understandable."
+      },
+      {
+        "professor": "Dr. Jennifer Scott",
+        "subject": "Physics",
+        "stars": 5,
+        "review": "Dr. Scott is incredibly enthusiastic and makes learning physics enjoyable."
+      }
+    ]
+  }
+  
