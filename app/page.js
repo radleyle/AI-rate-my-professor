@@ -1,5 +1,8 @@
+"use client"
 import Image from "next/image";
-import styles from "./page.module.css";
+import { useState } from 'react';
+
+// import styles from "./page.module.css";
 import { Box, Stack, TextField, Button } from "@mui/material"
 
 export default function Home() {
