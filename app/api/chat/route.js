@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { Pinecone } from '@pinecone-database/pinecone';
-import OpenAi from 'openai';
+import OpenAI from 'openai';
 
 const systemPrompt = `
 You are an advanced AI-powered assistant specializing in helping students discover the most suitable professors for their academic needs. Your primary objective is to assist students by providing the top 3 professor recommendations tailored to their specific queries, leveraging a database of professor reviews, ratings, and additional metadata.
@@ -55,7 +55,9 @@ export async function POST(req) {
         apiKey: process.env.PINECONE_API_KEY,
     })
     const index = pc.index('rag').namespace('ns1')
-    const openai = new OpenAI()
+    const openai = new OpenAI({
+        apiKey: process.env.OPENROUTER_API_KEY, // Correctly set API key
+    });
 
     const text = data[data.length - 1].content
     const embedding = await openai.embeddings.create({
@@ -112,6 +114,27 @@ export async function POST(req) {
             }
         },
     })
+
+    try {
+        const data = await req.text();
+
+        const completion = await openai.chat.completions.create({
+            messages: [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: data },
+            ],
+            model: 'openai/gpt-4o-mini', // Ensure this is the correct model name
+        });
+
+        const professors = JSON.parse(completion.choices[0].message.content);
+
+        return NextResponse.json(professors.professors);
+
+    } catch (error) {
+        console.error("Error during API request:", error.message);
+        console.error("Stack trace:", error.stack);
+        return NextResponse.json({ error: "An error occurred while processing your request." }, { status: 500 });
+    }
 
     return new NextResponse(stream)
 }
