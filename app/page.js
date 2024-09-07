@@ -2,8 +2,6 @@
 import { Box, Button, Stack, TextField, Typography, useTheme, useMediaQuery } from '@mui/material'
 import { useState } from 'react'
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
-
-
 import ReactMarkdown from 'react-markdown'
 
 // Chat container styling
@@ -38,27 +36,33 @@ const ChatBox = (props) => (
 );
 
 // Message styling
+
 const MessageBubble = ({ role, content, isMobile }) => (
   <Box
     display="flex"
     justifyContent={role === 'assistant' ? 'flex-start' : 'flex-end'}
-    mb={1}
+    mb={2} 
   >
     <Box
       bgcolor={role === 'assistant' ? '#E0E0E0' : '#007bff'}
       color={role === 'assistant' ? '#000' : '#fff'}
-      borderRadius={20}
-      p={2}
-      maxWidth={isMobile ? '90%' : '50%'}
+      borderRadius={2} 
+      p={3} 
+      maxWidth={isMobile ? '90%' : '70%'} 
       sx={{
         wordBreak: 'break-word',
         overflowWrap: 'break-word',
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        fontSize: '16px', 
+        lineHeight: '1.5',
       }}
     >
       <ReactMarkdown>{content}</ReactMarkdown>
     </Box>
   </Box>
 );
+
 
 export default function Home() {
   const [messages, setMessages] = useState([
@@ -72,6 +76,21 @@ export default function Home() {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const formatProfessorRecommendations = (professors) => {
+    return professors.map(prof => `
+**Name:** ${prof.name}
+
+**Subject:** ${prof.subject}
+
+**Rating:** ${prof.rating}
+
+**Review Summary:** ${prof.review_summary}
+
+**Additional Attributes:** ${prof.additional_attributes}
+
+    `).join('\n\n');
+  };
 
   const sendMessage = async () => {
     if (!message.trim()) return;
@@ -99,14 +118,30 @@ export default function Home() {
       const { done, value } = await reader.read();
       if (done) break;
       result += decoder.decode(value, { stream: true });
-      setMessages((prevMessages) => {
-        const lastMessage = prevMessages[prevMessages.length - 1];
-        return [
-          ...prevMessages.slice(0, -1),
-          { ...lastMessage, content: lastMessage.content + result },
-        ];
-      });
     }
+
+    // Format result as Markdown
+    let formattedResult = '';
+    try {
+      const parsedResult = JSON.parse(result);
+      if (parsedResult.professors) {
+        formattedResult = formatProfessorRecommendations(parsedResult.professors);
+      } else {
+        formattedResult = result; // Use raw result if not in expected format
+      }
+    } catch (e) {
+      console.error("Error parsing JSON:", e);
+      formattedResult = result; // Fallback to raw result
+    }
+
+    setMessages((prevMessages) => {
+      const lastMessage = prevMessages[prevMessages.length - 1];
+      return [
+        ...prevMessages.slice(0, -1),
+        { ...lastMessage, content: formattedResult },
+      ];
+    });
+
     setIsLoading(false);
   };
 
@@ -120,14 +155,14 @@ export default function Home() {
   return (
     <ChatContainer>
       <ChatBox>
-      <Typography 
-      align="center" 
-      color="textPrimary" 
-      style={{ fontSize: '24px', fontFamily: 'Roboto Mono', letterSpacing: '-0.5px', lineHeight: '32px' }}
-      gutterBottom
-    >
-      <ChatBubbleIcon fontSize="small" /> Rate My Professor AI
-    </Typography>
+        <Typography 
+          align="center" 
+          color="textPrimary" 
+          style={{ fontSize: '24px', fontFamily: 'Roboto Mono', letterSpacing: '-0.5px', lineHeight: '32px' }}
+          gutterBottom
+        >
+          <ChatBubbleIcon fontSize="small" /> Rate My Professor AI
+        </Typography>
         <Stack
           direction="column"
           spacing={2}
@@ -176,6 +211,3 @@ export default function Home() {
     </ChatContainer>
   );
 }
-
-
-// test commit hi world 
